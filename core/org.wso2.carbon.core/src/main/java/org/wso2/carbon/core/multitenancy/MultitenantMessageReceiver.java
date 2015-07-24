@@ -116,7 +116,7 @@ public class MultitenantMessageReceiver implements MessageReceiver {
                     PrivilegedCarbonContext.startTenantFlow();
                     PrivilegedCarbonContext privilegedCarbonContext =
                                                                       PrivilegedCarbonContext.getThreadLocalCarbonContext();
-                    privilegedCarbonContext.setTenantDomain(tenantDomain);
+                    privilegedCarbonContext.setTenantDomain(tenantDomain, true);
                     if (tenantResponseMsgCtx == null) {
                         tenantResponseMsgCtx = new MessageContext();
                         tenantResponseMsgCtx.setOperationContext(tenantRequestMsgCtx.getOperationContext());
@@ -213,7 +213,7 @@ public class MultitenantMessageReceiver implements MessageReceiver {
             PrivilegedCarbonContext.startTenantFlow();
             PrivilegedCarbonContext privilegedCarbonContext =
                                                               PrivilegedCarbonContext.getThreadLocalCarbonContext();
-            privilegedCarbonContext.setTenantDomain(tenantDomain);
+            privilegedCarbonContext.setTenantDomain(tenantDomain, true);
             // this is to prevent non-blocking transports from sending 202
             mainInMsgContext.getOperationContext().setProperty(Constants.RESPONSE_WRITTEN, "SKIP");
 
